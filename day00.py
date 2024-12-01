@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+from tools import Text2Array
 path = 'C:\\Users\\Alejandro\\Desktop\\AoC\\AoC_2024\\input_00.txt'
 with open(path, 'r') as f:
     cosa = [[s for s in l.strip('\n')] for l in f.readlines()]
