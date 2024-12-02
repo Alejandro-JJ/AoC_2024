@@ -1,7 +1,6 @@
 path = r"C:\Users\Alejandro\Desktop\AoC\AoC_2024\input_02.txt"
 with open(path, "r") as f:
     data = [list(map(int,l.split())) for l in f.readlines()]
-print(data)
 
 def isSafe(lista):
     '''
@@ -24,13 +23,25 @@ def isSafe(lista):
         else: 
             return False
     return True
+def isSafe2(lista):
+    '''
+    We create a list of all possible 
+    deteleted states and check all of them
+    '''
+    states = [lista]
+    for idx in range(0, len(lista)):
+        states.append(lista[:idx] + lista[idx+1:]) #removing one element
+    safes = [isSafe(s) for s in states]
+    if any(safes):
+        return True
+    else:
+        return False
+
+
 
 sol = 0
 for l in data:
-    print(l)
-    if isSafe(l):
+    if isSafe2(l):
         sol+=1
 print(f'Safe lists: {sol}')
 
-
-# %%
