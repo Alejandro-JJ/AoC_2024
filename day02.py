@@ -36,9 +36,7 @@ def isSafe2(lista):
         return True
     else:
         return False
-
-
-
+    
 sol = 0
 for l in data:
     if isSafe2(l):
