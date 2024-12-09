@@ -5,10 +5,9 @@ from collections import defaultdict
 from itertools import combinations
 import numpy as np
 import matplotlib.pyplot as plt
+from tools import ReadTextInput
 # Load data
-with open('./8.txt') as f:
-    data = [[s for s in line.strip('\n')] for line in f]
-H, W = len(data), len(data[0])
+data, H, W = ReadTextInput('./8.txt')
 print(f'Height: {H}, Width {W}')
 
 # Create dictionary of positions
