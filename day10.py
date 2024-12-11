@@ -3,6 +3,8 @@ Day 10: Hiking trails
 '''
 import numpy as np
 from collections import deque
+from time import time
+start_time = time()
 
 with open('./10.txt', 'r') as f:
     data = [[s for s in line.strip('\n')] for line in f.readlines()]
@@ -19,7 +21,7 @@ for r in range(0,H):
 
 # Starting points for the hikes
 starts = list(zip(*np.where(mapa==0)))
-print(f'Starting points : {starts}')
+#print(f'Starting points : {starts}')
 
 def isInMap(pos):
     '''
@@ -99,4 +101,4 @@ for start in starts:
 print(f'Part 1: {score}')
 print(f'Part 2: {rating}')
                 
-#print(hike(starts[4]))
+print(f'Total runtime: {(time()-start_time)} seconds')

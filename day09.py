@@ -129,7 +129,6 @@ while True:
                     #print(f'Did not find a fitting place for {(file, length)}')
     if foundplace==False:
         i-=1
-        # can also be indented here               
                     
     #print(file_length)
     #print('\n')
