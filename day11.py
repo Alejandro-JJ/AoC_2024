@@ -11,8 +11,11 @@ with open('11.txt', 'r') as f:
 #print(initial)
 
 class Stone():
+    # Lets include the possibility of removing all instances to save memory
+    instances = []
     def __init__(self, number):
         self.number = number
+        self.__class__.instances.append(self) # save ref
     
     def blink(self):
         # blinks and returns new stones
@@ -29,15 +32,18 @@ times = 75
 current = initial
 
 for t in tqdm(range(times)):
+    #print(f'Blinking {t+1}th time...')
     new_stones= []
     for s in current:
         stone = Stone(s)
         daughters = stone.blink()
         for d in daughters:
             new_stones.append(d.number)
-    #print(f'After {t+1} blinks')
-    #print(new_stones)
+    print(f'After {t+1} blinks we have: {len(new_stones)} stones')
+
     current = new_stones
+    for i,v in enumerate(Stone.instances):
+        del v
 
 print(f'Blinking took you {time(-start)} seconds')
 print(f'\nFound {len(current)} stones after blinking {times} times')
