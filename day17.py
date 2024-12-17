@@ -3,16 +3,15 @@ Day 17: Computer
 '''
 import numpy as np
 import re
+from time import time
+
+start= time()
 with open('input.txt', 'r') as f:
     data = [line.strip('\n') for line in f.readlines()]
 A = int(re.findall(r'\d+', data[0])[0])
-print(f'{A=}')
 B = int(re.findall(r'\d+', data[1])[0])
-print(f'{B=}')
 C = int(re.findall(r'\d+', data[2])[0])
-print(f'{C=}')
 PROG = list(map(int, data[4].split(' ')[1].split(',')))
-print(f'{PROG=}')
 
 
 def combo(input):
@@ -31,28 +30,28 @@ pointer = 0
 while pointer!=len(PROG):
     op = PROG[pointer]
     input = PROG[pointer+1]
-    print(f'Next: op {op} with input {input}')
+    #print(f'Next: op {op} with input {input}')
     
     if op==0:
         # Division and overwrite A
         num = A
         den = 2**combo(input)
         A= int(np.floor(num/den))
-        print(f'OP_0 Division, assigned value {A=}')
+        #print(f'OP_0 Division, assigned value {A=}')
         pointer+=2
         continue
     
     if op==1:
         # Bitwise XOR and overwrite B
         B = int(B^input)
-        print(f'OP_1 XOR, assigned value {B=}')
+        #print(f'OP_1 XOR, assigned value {B=}')
         pointer+=2
         continue
     
     if op==2:
         # Combo modulo 8 to B
         B = int(combo(input)%8)
-        print(f'OP_2 Combo%8, assigned value {B=}')
+        #print(f'OP_2 Combo%8, assigned value {B=}')
         pointer+=2
         continue
     
@@ -64,13 +63,13 @@ while pointer!=len(PROG):
         else:
             newpointer = input
             pointer = newpointer
-            print(f'OP_3 Jump, set {pointer=}')
+            #print(f'OP_3 Jump, set {pointer=}')
         continue
     if op==4:
         # Witwise B and C, to B
         temp = B^C
         B = int(temp)
-        print(f'OP_4 XOR B and C, assigned {B=}')
+        #print(f'OP_4 XOR B and C, assigned {B=}')
         pointer+=2
         continue
     
@@ -78,7 +77,7 @@ while pointer!=len(PROG):
         # Output combo%8 to string
         out = combo(input)%8
         OUTPUT += (str(int(out))+',')
-        print(f'OP_5, added to output {str(out)},')
+        #print(f'OP_5, added to output {str(out)},')
         pointer +=2
         continue
     
@@ -87,7 +86,7 @@ while pointer!=len(PROG):
         num = A
         den = 2**combo(input)
         B = int(np.floor(num/den))
-        print(f'OP_6 Division, assigned value {B=}')
+        #print(f'OP_6 Division, assigned value {B=}')
         pointer+=2
         continue
     
@@ -96,9 +95,9 @@ while pointer!=len(PROG):
         num = A
         den = 2**combo(input)
         C = int(np.floor(num/den))
-        print(f'OP_6 Division, assigned value {C=}')
+        #print(f'OP_6 Division, assigned value {C=}')
         pointer+=2
         continue
     
-print('Done!')
-print(OUTPUT)
+print(f'Done in {time()-start} seconds!')
+print(str(OUTPUT)[:-1])
