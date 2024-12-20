@@ -111,7 +111,7 @@ def RUN(A_test):
     else: 
         return False
     
-for test in range(10**15,10**16):
+for test in range(10**16,10**15,-100000):
     print(test)   
     if RUN(A_test=test):
         break

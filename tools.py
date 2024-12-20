@@ -4,6 +4,15 @@ from bs4 import BeautifulSoup
 import requests 
 import os
 
+def ReadTextInput(path):
+    '''
+    Reads a txt file and returns a nested list, height and width
+    '''
+    with open(path) as f:
+        data = [[s for s in line.strip('\n')] for line in f]
+    H, W = len(data), len(data[0])
+    return data, H, W
+
 def Text2Array(lista, dic):
     '''
     Takes an nested list of symbols and creates
