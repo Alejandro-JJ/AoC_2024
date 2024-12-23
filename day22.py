@@ -13,17 +13,6 @@ def prune(a):
     return a%16777216
 
 def next(sec):
-    '''
-       A: Calculate the result of multiplying the secret number by 64. 
-        Then, mix this result into the secret number. Finally, prune the secret number.
-        
-        B: Calculate the result of dividing the secret number by 32. 
-        Round the result down to the nearest integer. Then, mix this result into the secret number. 
-        Finally, prune the secret number.
-        
-        C: Calculate the result of multiplying the secret number by 2048. 
-        Then, mix this result into the secret number. Finally, prune the secret number.
-    '''
     A = prune(mix(sec, sec*64))
     B = prune(mix(A, int(A/32)))
     C = prune(mix(B, B*2048))
